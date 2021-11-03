@@ -80,6 +80,8 @@ function init() {
     lado = 3; // valor del lado inicial de los cubos
     delta = lado/2;
     hipo = Math.sqrt(Math.pow(delta,2) + Math.pow(delta,2)); //formula de hipotenusa pitágoras
+    angulo = Math.PI/6;
+    delta2 = (Math.cos((Math.PI/4)-angulo))*hipo; //Correcion de acuerdo con la varible 'angulo'
 
     //Se crean los 3 cubos de mismo tamaño en el origen
     for (var i = 0; i < 3; i++) {
@@ -90,9 +92,9 @@ function init() {
     /*Se transladan en los ejes X y Z para que no se ubiquen en el origen, 
 en este caso se hace que el primer cubo se alinee con el eje X y Z*/
     for (var i = 0; i < 3; i++) {
-        cuboA[i].translateX(hipo);
+        cuboA[i].translateX(delta2);
         cuboA[i].translateY(delta); 
-        cuboA[i].translateZ(hipo);
+        cuboA[i].translateZ(delta2);
     }
      
     //Se esacalan y transladan los cubos 2 y 3 de acuerdo a la escala
@@ -106,7 +108,6 @@ en este caso se hace que el primer cubo se alinee con el eje X y Z*/
     }
   
    //ROTACIÓN EN EL EJE Y cubos 1 y 3.
-    angulo = Math.PI/4;
     for (var i=0; i < 3; i++){
      if( i==0 || i==2){
        cuboA[i].rotateY(angulo);
